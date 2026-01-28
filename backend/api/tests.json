@@ -1,0 +1,49 @@
+{
+  "tests": [
+    {
+      "name": "Get dashboard data",
+      "method": "GET",
+      "path": "/?path=dashboard",
+      "headers": {
+        "X-User-Id": "1"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "cycle": "object",
+        "symptoms": "array",
+        "mood": "array",
+        "goals": "array"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Add symptom",
+      "method": "POST",
+      "path": "/?path=symptom",
+      "headers": {
+        "X-User-Id": "1",
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "date": "2026-01-31",
+        "symptom_type": "pain",
+        "severity": 50,
+        "notes": "Test symptom"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true,
+        "id": "number"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Get community posts",
+      "method": "GET",
+      "path": "/?path=community",
+      "expectedStatus": 200,
+      "expectedBody": "array",
+      "bodyMatcher": "type"
+    }
+  ]
+}
